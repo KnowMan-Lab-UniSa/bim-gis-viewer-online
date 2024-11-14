@@ -126649,10 +126649,10 @@ const viewerSetup = (viewer) => {
 
 // Saving the model
 const preprocessAndSaveIfc = async (viewer, db, event) => {
-  const file = event.target.files[0];
-  const url = URL.createObjectURL(file);
+  //const file = event.target.files[0];
+  //const url = URL.createObjectURL(file);
 
-  ifcToGLFT(viewer, db, url);
+  ifcToGLFT(viewer, db, event);
 };
 
 const loadSampleIfc = async (viewer, db) => {
@@ -126823,10 +126823,22 @@ paletteButton.onclick = () => {
 // We use the button to display the GUI and the input to load the file
 // Because the input is not customizable
 const input = document.getElementById('file-input');
-saveButton.onclick = () => input.click();
-input.onchange = async (event) => {
+//saveButton.onclick = () => input.click();
+/*input.onchange = async (event) => {
     properties = await wiv.preprocessAndSaveIfc(viewer, db, event);
-};
+}; */
+
+const select = document.getElementById('file-select');
+
+saveButton.onclick = async () => {
+	const selectedFile = select.value; // Valore selezionato nel select html
+	console.log(selectedFile);
+	if (selectedFile) {
+		properties = await wiv.preprocessAndSaveIfc(viewer, db, selectedFile);
+	} else {
+		alert("Per favore, seleziona un file.");
+	}
+}
 
 sampleButton.onclick = async () => properties = await wiv.loadSampleIfc(viewer, db);
 
@@ -126838,14 +126850,14 @@ const updateButtons = async () => {
         dimButton.setAttribute("disabled", "");
         mapButton.setAttribute("disabled", "");
         sampleButton.removeAttribute("disabled");
-        saveButton.removeAttribute("disabled");
+        //saveButton.removeAttribute("disabled");
     } else {
         properties = await database.loadSavedIfc(viewer, db);
         removeButton.removeAttribute("disabled");
         dimButton.removeAttribute("disabled");
         mapButton.removeAttribute("disabled");
         sampleButton.setAttribute("disabled", "");
-        saveButton.setAttribute("disabled", "");
+        //saveButton.setAttribute("disabled", "");
     }
 };
 

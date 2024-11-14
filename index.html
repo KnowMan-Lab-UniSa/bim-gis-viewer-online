@@ -31,7 +31,8 @@
     </div>
 
     <div class="absolute top-2 left-2 z-10 flex flex-col items-start gap-2">
-      <div class="flex flex-col items-start gap-2 p-2 bg-white rounded-xl shadow-xl">
+      <div class="flex flex-col items-start gap-2 p-2 bg-gray-200 rounded-xl ">
+        <h2 class="menu-title">Menu</h2>
         <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300" id="sample-button">
           <span class="material-icons material-symbols-outlined">
               home
@@ -39,37 +40,47 @@
           Open sample model
         </button>
         <div class="w-full text-center">OR</div>
+
+        <select id="file-select">
+          <option disabled selected>Select IFC file</option>
+          <option value="../ifc_folder/provaifc.ifc">File 1</option>
+          <option value="../ifc_folder/testing.ifc">File 2</option>
+          <option value="file3.ifc">File 3</option>
+        </select>
+        <!-- <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300" id="save-button">Open</button> -->
+
         <input class="hidden" type="file" id="file-input">
-        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300" id="save-button">
-          <span class="material-icons material-symbols-outlined">
-              upload_file
-          </span>
-          Upload model
-        </button>
-        <button class="px-4 py-2 bg-red-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-red-300" id="remove-button">
-          <span class="material-icons material-symbols-outlined">
+        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-blue-300" id="save-button" disabled>
+          <!-- <span class="material-icons material-symbols-outlined">
+              file_open
+          </span> -->
+          Open model
+        </button> 
+
+        <button class="w-full px-4 py-2 bg-red-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-red-300" id="remove-button">
+          <!-- <span class="material-icons material-symbols-outlined">
               delete
-          </span>
+          </span> -->
           Remove cached model
-        </button>
-        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300" id="dim-button">
+        </button> 
+        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-blue-300 hidden" id="dim-button">
           <span class="material-icons material-symbols-outlined">
             straighten
           </span>
           Dimension
         </button>
-        <button class="w-full bg-blue-500 disabled:bg-blue-300 rounded-xl shadow-xl disabled:pointer-events-none" id="map-button">
-          <a class="w-full px-4 py-2 text-white flex justify-center items-center gap-2" href='gis.html'>
+        <button class="w-full bg-blue-500 disabled:bg-blue-300 rounded-xl shadow-xl disabled:pointer-events-none hidden"  id="map-button">
+          <a class="w-full px-4 py-2 text-white flex items-center gap-2" href='gis.html'>
               <span class="material-icons material-symbols-outlined">
                 travel_explore
               </span>
               3D map viewer
           </a>
-        </button>
-        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300" id="guide-button">
-            <span class="material-icons material-symbols-outlined">
+        </button> 
+        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-blue-300" id="guide-button">
+            <!-- <span class="material-icons material-symbols-outlined">
               help
-            </span>
+            </span> -->
             Keyboard guide
           </a>
         </button>
@@ -112,19 +123,19 @@
       <div class="hidden p-2 bg-white rounded-xl shadow-xl max-w-[50vh] max-h-[50vh] overflow-y-scroll" id="properties-container"></div>
     </div>
 
-    <button class="fixed right-2 bottom-24 z-10 p-4 bg-blue-500 text-white rounded-full shadow-xl flex items-center justify-center" id="palette-button">
+    <button class="fixed right-2 bottom-8 z-10 p-4 bg-blue-500 text-white rounded-full shadow-xl flex items-center justify-center" id="palette-button">
       <span class="material-icons material-icons-outlined">
         palette
       </span>
     </button>
 
-    <button class="fixed right-2 bottom-8 z-10 p-4 bg-blue-500 text-white rounded-full shadow-xl flex items-center justify-center">
+    <!-- <button class="fixed right-2 bottom-8 z-10 p-4 bg-blue-500 text-white rounded-full shadow-xl flex items-center justify-center">
       <a class="flex items-center justify-center" href="https://github.com/helenkwok/bim-gis-viewer" target="_blank">
         <span class="material-icons material-icons-outlined">
           code
         </span>
       </a>
-    </button>
+    </button> -->
 
     <footer class="fixed w-screen bottom-0 flex items-center justify-center z-10 pointer-events-none">
         <div class="px-2 bg-neutral-200 bg-opacity-50">
@@ -137,5 +148,19 @@
     </footer>
 
     <script src="bundle/viewer.js"></script>
+    <script>
+      const fileSelect = document.getElementById('file-select');
+      const saveButton1 = document.getElementById('save-button');
+
+      fileSelect.addEventListener('change', () => {
+          // Controlla se il valore selezionato è ancora quello di default
+          if (fileSelect.value === '') {
+              saveButton1.disabled = true;
+          } else {
+              saveButton1.disabled = false;
+          }
+      });
+  </script>
+
 </body>
 </html>
