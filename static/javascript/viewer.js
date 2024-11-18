@@ -126610,7 +126610,7 @@ function removeDatabase(db) {
   localStorage.removeItem("modelsNames");
   localStorage.removeItem("propertiesNames");
   db.delete();
-  //location.reload();
+  location.reload();
 }
 
 
