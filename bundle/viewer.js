@@ -126649,8 +126649,8 @@ const viewerSetup = (viewer) => {
 
 // Saving the model
 const preprocessAndSaveIfc = async (viewer, db, event) => {
-  //const file = event.target.files[0];
-  //const url = URL.createObjectURL(file);
+  const file = event.target.files[0];
+  const url = URL.createObjectURL(file);
 
   ifcToGLFT(viewer, db, event);
 };
