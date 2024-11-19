@@ -126655,7 +126655,6 @@ const preprocessAndSaveIfc = async (viewer, db, event) => {
     //const url = URL.createObjectURL(new File([], filePath));
 	//console.log(url);
 	//event = '../static/ifc/provaifc.ifc';
-	console.log("ciao");
 	var url = '../static/ifc/' + event;
     ifcToGLFT(viewer, db, url);
 };
@@ -126845,11 +126844,9 @@ const select = document.getElementById('file-select');
 	}
 } */
 
-//window.onload = async function () {
+/*window.onload = async function () {
 //async function load_viewer() {
-saveButton.onclick = async () => {
-	
-	//console.log("ciao");
+//saveButton.onclick = async () => {
 	const filePath = window.location.pathname.substring(1);
 	if (filePath) {
 		//wiv.releaseMemory(viewer);
@@ -126858,7 +126855,24 @@ saveButton.onclick = async () => {
 	} else {
 		alert("Per favore, seleziona un file.");
 	}
-}
+} */
+
+window.onload = async function () {
+	const filePath = window.location.pathname.substring(1);
+	const loadedFile = localStorage.getItem('loadedFile'); //localStorage è una memoria browser permanente sul ricaricamento della pagina
+	if (filePath && filePath !== loadedFile) { //se filePath esiste e se è diverso dal file già caricato
+		try {
+			// localStorage serve per evitare di chiamare preprocessAndSaveIfc() all'infinito al caricamento di index
+			properties = await wiv.preprocessAndSaveIfc(viewer, db, filePath);
+			localStorage.setItem('loadedFile', filePath); //salvo il percorso nel localStorage
+		} catch (error) {
+			console.error('Errore durante il caricamento del file:', error);
+		}
+	} else if (!filePath) {
+		alert("Per favore, seleziona un file.");
+	}
+};
+
 
 sampleButton.onclick = async () => properties = await wiv.loadSampleIfc(viewer, db);
 

@@ -1,0 +1,41 @@
+.ifcjs-dimension-preview {
+    width: 1rem;
+    height: 1rem;
+    background-color: #FFA50F;
+    border-radius: 1rem;
+    opacity: 0.5;
+}
+
+.ifcjs-dimension-label {
+    background-color: black;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#file-select {
+    width: 100%; 
+    padding: 0.5rem 1rem; 
+    background-color: white; 
+    color: #3b82f6; 
+    border: none; 
+    border-radius: 0.75rem; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    cursor: pointer;
+}
+
+#file-select:focus {
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(59, 130, 247, 0.5);
+}
+
+.menu-title {
+    font-size: 1.2rem; 
+    color: #000000; 
+    margin: 0; 
+    font-weight: bold; 
+    padding: 0; 
+    width: 100%;
+    text-align: center;
+}
+  

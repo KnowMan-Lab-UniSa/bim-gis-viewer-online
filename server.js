@@ -19,20 +19,23 @@ const upload = multer({ storage: storage });
 
 
 // Endpoints
-// Serve static files from the "static" directory
+// Per servire file statici
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
-// Route for /
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'templates', 'login.html'));
-});
 
 // Endpoint per l'upload dei file
 app.post('/upload', upload.single('file'), (req, res) => {
-    res.send('File uploaded successfully');
+    res.send(`
+        <p>File uploaded successfully</p>
+        <script>
+            setTimeout(function() {
+                window.location.href = '/admin';
+            }, 3000);
+        </script>
+    `);
 });
 
-// Middleware per proteggere l'endpoint con una password
+// Middleware per proteggere un endpoint con password
 const protectWithPassword = (req, res, next) => {
     const b64auth = (req.headers.authorization || '').split(' ')[1] || '';
     const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':');

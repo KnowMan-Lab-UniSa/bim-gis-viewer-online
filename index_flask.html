@@ -33,49 +33,49 @@
     <div class="absolute top-2 left-2 z-10 flex flex-col items-start gap-2">
       <div class="flex flex-col items-start gap-2 p-2 bg-gray-200 rounded-xl ">
         <h2 class="menu-title">Menu</h2>
-        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300" id="sample-button">
-          <span class="material-icons material-symbols-outlined">
+        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300 hidden" id="sample-button">
+          <!--<span class="material-icons material-symbols-outlined">
               home
           </span>
-          Open sample model
+          Open sample model -->
         </button>
-        <div class="w-full text-center">OR</div>
+        <!-- <div class="w-full text-center">OR</div>
 
         <select id="file-select">
           <option disabled selected>Select IFC file</option>
           <option value="./provaifc.ifc">File 1</option>
           <option value="./testing.ifc">File 2</option>
           <option value="file3.ifc">File 3</option>
-        </select>
+        </select> -->
         <!-- <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex justify-center items-center gap-2 disabled:bg-blue-300" id="save-button">Open</button> -->
 
         <input class="hidden" type="file" id="file-input">
-        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-blue-300" id="save-button">
+        <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-blue-300 hidden" id="save-button">
           <!-- <span class="material-icons material-symbols-outlined">
               file_open
-          </span> -->
-          Open model
+          </span> 
+          Open model -->
         </button> 
 
-        <button class="w-full px-4 py-2 bg-red-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-red-300" id="remove-button">
+        <button class="w-full px-4 py-2 bg-red-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-red-300 hidden" id="remove-button">
           <!-- <span class="material-icons material-symbols-outlined">
               delete
-          </span> -->
-          Remove cached model
+          </span> 
+          Remove cached model -->
         </button> 
         <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-blue-300 hidden" id="dim-button">
-          <span class="material-icons material-symbols-outlined">
+          <!--<span class="material-icons material-symbols-outlined">
             straighten
           </span>
-          Dimension
+          Dimension -->
         </button>
         <button class="w-full bg-blue-500 disabled:bg-blue-300 rounded-xl shadow-xl disabled:pointer-events-none hidden"  id="map-button">
-          <a class="w-full px-4 py-2 text-white flex items-center gap-2" href='gis.html'>
+          <!--<a class="w-full px-4 py-2 text-white flex items-center gap-2" href='gis.html'>
               <span class="material-icons material-symbols-outlined">
                 travel_explore
               </span>
               3D map viewer
-          </a>
+          </a> -->
         </button> 
         <button class="w-full px-4 py-2 bg-blue-500 text-white rounded-xl shadow-xl flex items-center gap-2 disabled:bg-blue-300" id="guide-button">
             <!-- <span class="material-icons material-symbols-outlined">
@@ -149,21 +149,6 @@
 
     <!--<body onload="load_viewer()"> -->
       <script src="static/javascript/viewer.js"></script>
-      <script>
-          /*async function initialize() {
-              // Recupera il path del file dall'URL
-              const filePath = window.location.pathname.substring(1); // Ottiene il filePath dall'URL
-  
-              // Passa il path del file a viewer.js
-              if (filePath) {
-                  await wiv.preprocessAndSaveIfc(viewer, db, filePath);
-              } else {
-                  alert("Per favore, fornisci un path del file nell'URL.");
-              }
-          }*/
-         //load_viewer();
-      </script>
-
   
 </body>
 </html>
