@@ -5,14 +5,14 @@ db.serialize(() => {
     /*db.run(`
         CREATE TABLE IF NOT EXISTS user (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
+            username TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL
         )
     `); */
 
     // Inserisci un utente
     const insert = 'INSERT INTO user (username, password) VALUES (?, ?)';
-    db.run(insert, ['', ''], (err) => {
+    db.run(insert, ['admin', sha256.sha256('admin')], (err) => {
         if (err) {
             return console.error(err.message);
         }
@@ -20,9 +20,9 @@ db.serialize(() => {
     });
 
     /*const query_delete = 'DELETE FROM user';
-    db.run(query_delete); 
-    db.each("SELECT username, password FROM user", (err, row) => {
-        console.log(row.username + ": " + row.password);
+    db.run(query_delete); */
+    /*db.each("SELECT id, username, password FROM user", (err, row) => {
+        console.log(row.id + " " + row.username + ": " + row.password);
     }); */
 });
 

@@ -126857,16 +126857,25 @@ const select = document.getElementById('file-select');
 	}
 } */
 
-window.onload = async function () {
+window.onload = async function () { // Al caricamento della pagina del viewer
 	const filePath = window.location.pathname.substring(1);
-	const loadedFile = localStorage.getItem('loadedFile'); //localStorage è una memoria browser permanente sul ricaricamento della pagina
-	if (filePath && filePath !== loadedFile) { //se filePath esiste e se è diverso dal file già caricato
-		try {
-			// localStorage serve per evitare di chiamare preprocessAndSaveIfc() all'infinito al caricamento di index
-			properties = await wiv.preprocessAndSaveIfc(viewer, db, filePath);
-			localStorage.setItem('loadedFile', filePath); //salvo il percorso nel localStorage
-		} catch (error) {
-			console.error('Errore durante il caricamento del file:', error);
+	const loadedFile = localStorage.getItem('loadedFile'); // localStorage è una memoria browser permanente sul ricaricamento della pagina
+
+	if (filePath && filePath !== loadedFile) { // se filePath c'è e se è diverso dal file già caricato
+		if (filePath.endsWith('.ifc')) { // controlla se il file è un file .ifc
+			try {
+				const response = await fetch(`/static/ifc/${filePath}`);
+				if (response.ok) { // se il file esiste
+					properties = await wiv.preprocessAndSaveIfc(viewer, db, filePath);
+					localStorage.setItem('loadedFile', filePath); // salvo il percorso nel localStorage
+				} else {
+					alert("Il file non esiste nella directory /static/ifc. I dati visualizzati potrebbero essere errati");
+				}
+			} catch (error) {
+				console.error('Errore durante il caricamento del file:', error);
+			}
+		} else {
+			alert("Il file selezionato non è un file .ifc. I dati visualizzati potrebbero essere errati");
 		}
 	} else if (!filePath) {
 		alert("Per favore, seleziona un file.");
