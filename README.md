@@ -1,6 +1,6 @@
-# BIM-GIS Viewer
+# BIM-GIS Viewer Online
 
-Forked from https://github.com/helenkwok/bim-gis-viewer 
+This project is forked from https://github.com/helenkwok/bim-gis-viewer 
 
 ## Key Features
 
